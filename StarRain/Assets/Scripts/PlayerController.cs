@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : BaseController
 {
+
+    [SerializeField] public bool enableGoodMode = false;
     override public void HandleDirectionChange(){
         HandleAndriodInput();
         HandleMouseInput();
@@ -21,6 +24,11 @@ public class PlayerController : BaseController
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             m_direction   = (mousePosition - transform.position).normalized;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D col){
+        if( enableGoodMode ) return;
+        SceneManager.LoadScene(0);
     }
 
 }

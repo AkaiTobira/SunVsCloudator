@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\EnemyFollowController.cs" />
      <Compile Include="Assets\Scripts\EnemyRandomController.cs" />
+     <Compile Include="Assets\Scripts\EnemyRotateController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
  <Reference Include="Unity.Timeline.Editor">

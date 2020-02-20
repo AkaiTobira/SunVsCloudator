@@ -9,7 +9,6 @@ public class EnemiesController : MonoBehaviour
     private float timer;
     private int numberOfChildren;
     public GameObject m_prefab;
-    private int newChilds = 0;
 
     [SerializeField] private float tiemrStep = 2.0f;
     void Awake() 

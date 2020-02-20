@@ -47,10 +47,4 @@ public class BaseController : MonoBehaviour
 
     public virtual void UpdateDirectionChangeTimer(){}
 
-    void OnTriggerEnter2D(Collider2D col){
-        if( col.gameObject.name == "Player"){
-            SceneManager.LoadScene(0);
-        }
-    }
-
 }
