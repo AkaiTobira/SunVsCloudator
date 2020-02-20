@@ -5,36 +5,6 @@ using UnityEngine;
 public class EnemiesController : MonoBehaviour
 {
     public List<Vector3> m_directions;
-    void Awake() 
-    {
-
-       numberOfChildren = transform.childCount;
-
-        for( int i = 0; i < numberOfChildren; i++){
-            Transform current_child                                     = transform.GetChild(i);
-
-            EnemyController EC = current_child.GetComponent<EnemyController>();
-            if( EC != null){
-                current_child.GetComponent<EnemyController>().index         = i;
-                current_child.GetComponent<EnemyController>().numberOfChild = numberOfChildren;
-            }else{
-                current_child.GetComponent<EnemyRandomController>().index         = i;
-                current_child.GetComponent<EnemyRandomController>().numberOfChild = numberOfChildren;
-            }
-
-
-
-            print( numberOfChildren );
-
-            Transform next_child;
-            if( i == numberOfChildren-1){
-                next_child = transform.GetChild(0);
-            }else{
-                next_child = transform.GetChild(i+1);
-            }
-            m_directions.Add( (next_child.position - current_child.position).normalized );
-        }
-    }
 
     private float timer;
     private int numberOfChildren;
@@ -42,22 +12,48 @@ public class EnemiesController : MonoBehaviour
     private int newChilds = 0;
 
     [SerializeField] private float tiemrStep = 2.0f;
+    void Awake() 
+    {
+
+       numberOfChildren = transform.childCount;
+
+        for( int i = 0; i < numberOfChildren; i++){
+            Transform current_child = transform.GetChild(i);
+            Transform next_child    = GetNextEnemy(i);
+            SetEnemyIndexRelatedValues( i );
+            m_directions.Add( (next_child.position - current_child.position).normalized );
+        }
+    }
+
+    private Transform GetNextEnemy( int current_child_index ){
+        return ( current_child_index == numberOfChildren -1) ? transform.GetChild(0) : transform.GetChild(current_child_index+1);
+    }
+
+    private void SetEnemyIndexRelatedValues( int index ){
+            Transform current_child = transform.GetChild(index);
+            BaseController EC = current_child.GetComponent<BaseController>();
+            EC.index          = index;
+            EC.numberOfChild  = numberOfChildren;
+    }
 
     void Update()
     {
-        SpawnNewChild();
+        UpdateTimerToSpawnNewChild();
     }
 
-    void SpawnNewChild(){
+    void UpdateTimerToSpawnNewChild(){
         timer -= Time.deltaTime;
         if( timer < 0){
             timer += tiemrStep;
-            GameObject new_child = Instantiate(m_prefab, new Vector3(-1000, -1000, 0), Quaternion.identity);
-            new_child.transform.parent = this.transform;
-            newChilds += 1;
-            new_child.GetComponent<EnemyController>().index = Random.Range(0, numberOfChildren);
-            new_child.GetComponent<EnemyController>().numberOfChild = numberOfChildren;
+            SpawnNewEnemy();
         }
+    }
+
+    void SpawnNewEnemy(){
+        GameObject new_child = Instantiate(m_prefab, new Vector3(-1000, -1000, 0), Quaternion.identity);
+        new_child.transform.parent = this.transform;
+        new_child.GetComponent<BaseController>().index = Random.Range(0, numberOfChildren);
+        new_child.GetComponent<BaseController>().numberOfChild = numberOfChildren;
     }
 
 

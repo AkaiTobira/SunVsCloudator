@@ -10,17 +10,15 @@ public class GameController : MonoBehaviour
     [SerializeField] public GameObject UiText;
     [SerializeField] public GameObject UiTextasgg;
     void Awake() {
-    
+        Camera.main.aspect = 1.77f;
     }
 
 void Update()
 {
     timer += Time.deltaTime;
     UiText.GetComponent<Text>().text = "Time : " + timer.ToString();
-    UiTextasgg.GetComponent<Text>().text = transform.GetChild(2).GetComponent<PlayerController>().mousePosition.ToString(); 
-    
-    
-    timer.ToString();
+   // UiTextasgg.GetComponent<Text>().text = transform.GetChild(2).GetComponent<PlayerController>().mousePosition.ToString(); 
+ 
 }
 
 }
