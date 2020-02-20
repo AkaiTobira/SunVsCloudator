@@ -20,6 +20,11 @@ public class PlayerController : BaseController
     }
 
     private void HandleMouseInput(){
+
+        if ( Input.GetKeyDown( KeyCode.Space )){
+            enableGoodMode = !enableGoodMode;
+        }
+
         if ( Input.GetMouseButton(0) ){
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             m_direction   = (mousePosition - transform.position).normalized;
