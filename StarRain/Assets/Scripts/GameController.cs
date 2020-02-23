@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
 
     float timer = 0;
+    [SerializeField] const float pointsMultiplyer = 5;
     [SerializeField] public GameObject UiText;
     [SerializeField] public GameObject UiTextasgg;
     void Awake() {
@@ -16,7 +17,7 @@ public class GameController : MonoBehaviour
 void Update()
 {
     timer += Time.deltaTime;
-    UiText.GetComponent<Text>().text = "Time : " + timer.ToString();
+    UiText.GetComponent<Text>().text = "Points : " + ((int)(timer * pointsMultiplyer)).ToString();
    // UiTextasgg.GetComponent<Text>().text = transform.GetChild(2).GetComponent<PlayerController>().mousePosition.ToString(); 
  
 }

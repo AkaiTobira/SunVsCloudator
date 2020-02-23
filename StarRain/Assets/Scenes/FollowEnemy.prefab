@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 924053044803194993}
   - component: {fileID: 924053044803194996}
   - component: {fileID: 924053044803194999}
-  - component: {fileID: 924053044803194997}
+  - component: {fileID: 288404385071923608}
   - component: {fileID: 924053044803194998}
   m_Layer: 0
   m_Name: FollowEnemy
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 274f755c6f838334f82aeb6ef893ee38, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79651ce767e5ba949aed01c90bf6c578, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &924053044803194997
+--- !u!114 &288404385071923608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,10 +114,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 924053044803194992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e494390d1c0cbf4a8b6b98d718845f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 2232c2cf426139c46a958f3ffc5af9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 150
+  m_speed: 100
   index: 0
   numberOfChild: 0
   timerStep: 0.2
