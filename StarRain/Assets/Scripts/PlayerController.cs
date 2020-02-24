@@ -12,15 +12,10 @@ public class PlayerController : BaseController
         HandleMouseInput();
     }
 
-    private void flipAnimation(){
-            GetComponent<SpriteRenderer>().flipX = m_direction.x > 0;
-    }
-
     private void HandleAndriodInput(){
         foreach( Touch t in Input.touches ){
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(t.position);
             m_direction   = (mousePosition - transform.position).normalized;
-            flipAnimation();
         }
     }
 
@@ -33,7 +28,6 @@ public class PlayerController : BaseController
         if ( Input.GetMouseButton(0) ){
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             m_direction   = (mousePosition - transform.position).normalized;
-            flipAnimation();
         }
     }
 

@@ -9,8 +9,10 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D m_rigidbody;
     protected Vector2 m_direction;
 
-    private float screen_hight;
-    private float screen_width;
+    [HideInInspector] public bool BlockHere = true;
+
+    protected float screen_hight;
+    protected float screen_width;
 
     [HideInInspector] public int index;
     [HideInInspector] public int numberOfChild;
@@ -19,6 +21,7 @@ public class BaseController : MonoBehaviour
     protected float timer = 0.0f;
     private void Awake() {
         m_rigidbody   = GetComponent<Rigidbody2D>();
+        m_direction = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0 ).normalized ;
         timer = timerStep;
     }
     private void UpdateCameraProperties(){
@@ -27,6 +30,9 @@ public class BaseController : MonoBehaviour
         screen_width = screen_hight * cam.aspect;
     }
 
+    private void flipAnimation(){
+            GetComponent<SpriteRenderer>().flipX = m_direction.x > 0;
+    }
     public virtual void HandleDirectionChange(){
             m_direction  = new Vector3(1,0,0);
     }
@@ -39,10 +45,16 @@ public class BaseController : MonoBehaviour
     }
 
     void Update(){
+        if( BlockHere ) {
+            m_speed = 0;
+            print( " IS BLocked ");
+            return;
+        }
         UpdateCameraProperties();
         HandleDirectionChange();
         TeleportByWall();
         UpdateDirectionChangeTimer();
+        flipAnimation();
     }
 
     public virtual void UpdateDirectionChangeTimer(){}

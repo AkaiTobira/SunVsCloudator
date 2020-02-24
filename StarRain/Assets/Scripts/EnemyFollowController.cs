@@ -7,5 +7,10 @@ public class EnemyFollowController : BaseController
         m_direction = (transform.parent.Find("Player").position - transform.position).normalized;
     }
 
+    void OnTriggerEnter2D(Collider2D col){
+        if( col.gameObject.name == "Player") return;
+        Destroy(col.gameObject);
+    }
+
 }
 
