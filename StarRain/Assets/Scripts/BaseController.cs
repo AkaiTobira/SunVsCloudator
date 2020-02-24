@@ -9,7 +9,7 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D m_rigidbody;
     protected Vector2 m_direction;
 
-    [HideInInspector] public bool BlockHere = true;
+    [SerializeField] public bool BlockHere = true;
 
     protected float screen_hight;
     protected float screen_width;
