@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 public class EnemyFollowController : BaseController
 {
+
+    [SerializeField] private GameObject playerNode = null;
+
     override public void HandleDirectionChange(){
-        m_direction = (transform.parent.Find("Player").position - transform.position).normalized;
+        m_direction = (playerNode.transform.position - transform.position).normalized;
     }
 
     void OnTriggerEnter2D(Collider2D col){
