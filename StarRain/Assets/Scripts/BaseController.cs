@@ -20,6 +20,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] protected float timerStep = 0.2f;
     protected float timer = 0.0f;
     private void Awake() {
+        BlockHere = true;
         m_rigidbody   = GetComponent<Rigidbody2D>();
         m_direction = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0 ).normalized ;
         timer = timerStep;
@@ -46,8 +47,11 @@ public class BaseController : MonoBehaviour
 
     void Update(){
         if( BlockHere ) {
-            m_speed = 0;
-            print( " IS BLocked ");
+            timer += Time.deltaTime;
+            if(timer > 1.0){
+                timer = 0;
+                BlockHere = false;
+            }
             return;
         }
         UpdateCameraProperties();

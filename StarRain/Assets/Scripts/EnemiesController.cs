@@ -29,7 +29,7 @@ public class EnemiesController : MonoBehaviour
     }
 
     void SpawnNewEnemy(){
-        GameObject new_child = Instantiate(m_prefab[Random.Range(0, m_prefab.Length)], new Vector3(-1000, -1000, 0), Quaternion.identity);
+        GameObject new_child = Instantiate(m_prefab[Random.Range(0, m_prefab.Length)], new Vector3(Random.Range( -1000, 1000), Random.Range( -1000, 1000), 0), Quaternion.identity);
         new_child.transform.parent = this.transform;
         new_child.GetComponent<BaseController>().index = Random.Range(0, numberOfChildren);
         new_child.GetComponent<BaseController>().numberOfChild = numberOfChildren;
