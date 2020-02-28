@@ -19,7 +19,7 @@ public class BaseController : MonoBehaviour
 
     [SerializeField] protected float timerStep = 0.2f;
     protected float timer = 0.0f;
-    private void Awake() {
+    protected virtual void Awake() {
         BlockHere = true;
         m_rigidbody   = GetComponent<Rigidbody2D>();
         m_direction = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0 ).normalized ;
@@ -45,7 +45,7 @@ public class BaseController : MonoBehaviour
         if( transform.position.y >  screen_hight*0.5f ){ transform.position = new Vector3( transform.position.x, -screen_hight*0.5f ); }
     }
 
-    void Update(){
+    protected virtual void Update(){
         if( BlockHere ) {
             timer += Time.deltaTime;
             if(timer > 1.0){

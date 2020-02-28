@@ -18,8 +18,31 @@ public class EnemiesController : MonoBehaviour
         screen_width = screen_hight * cam.aspect;
     }
 
+    void Awake() {
+        StopAllEnemies();
+    }
+
+    void StopAllEnemies(){
+        for( int i = 0; i < transform.childCount; i ++){
+            Transform child = transform.GetChild(i);
+            child.GetComponent<Renderer>().enabled       = false;
+            child.GetComponent<Animator>().enabled       = false;
+            child.GetComponent<BaseController>().enabled = false;
+        }
+    }
+
+    public void RunAllEnemies(){
+        for( int i = 0; i < transform.childCount; i ++){
+            Transform child = transform.GetChild(i);
+            child.GetComponent<Renderer>().enabled       = true;
+            child.GetComponent<Animator>().enabled       = true;
+            child.GetComponent<BaseController>().enabled = true;
+        }
+    }
+
     void Update()
     {
+        if( ! transform.parent.GetComponent<GameController>().isGameStarted() ) return;
         UpdateCameraProperties();
         UpdateTimerToSpawnNewChild();
     }

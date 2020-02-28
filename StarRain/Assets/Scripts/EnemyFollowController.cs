@@ -7,6 +7,7 @@ public class EnemyFollowController : BaseController
     [SerializeField] private GameObject playerNode = null;
 
     override public void HandleDirectionChange(){
+        if( playerNode == null ) return;
         m_direction = (playerNode.transform.position - transform.position).normalized;
     }
 

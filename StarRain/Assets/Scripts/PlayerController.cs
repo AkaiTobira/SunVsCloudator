@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class PlayerController : BaseController
 {
 
+    private bool pausePlayer = false;
     [SerializeField] public bool enableGoodMode = false;
+
+    override protected void Awake() {
+        base.Awake();
+        pausePlayer = true;
+        BlockHere   = true;
+
+    }
+
     override public void HandleDirectionChange(){
         HandleAndriodInput();
         HandleMouseInput();
@@ -14,10 +23,17 @@ public class PlayerController : BaseController
 
     private void HandleAndriodInput(){
         foreach( Touch t in Input.touches ){
+            transform.parent.GetComponent<GameController>().StartGame();
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(t.position);
             m_direction   = (mousePosition - transform.position).normalized;
         }
     }
+
+    override protected void Update() {
+        base.Update();
+        HandleDirectionChange();
+    }
+
 
     private void HandleMouseInput(){
 
@@ -26,6 +42,7 @@ public class PlayerController : BaseController
         }
 
         if ( Input.GetMouseButton(0) ){
+            transform.parent.GetComponent<GameController>().StartGame();
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             m_direction   = (mousePosition - transform.position).normalized;
         }
@@ -33,7 +50,8 @@ public class PlayerController : BaseController
 
     void OnTriggerEnter2D(Collider2D col){
         if( enableGoodMode ) return;
-        SceneManager.LoadScene(0);
+        transform.parent.GetComponent<GameController>().GameOver();
+        Destroy(this.gameObject);
     }
 
 }
