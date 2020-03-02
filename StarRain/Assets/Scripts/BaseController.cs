@@ -25,41 +25,56 @@ public class BaseController : MonoBehaviour
         m_direction = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0 ).normalized ;
         timer = timerStep;
     }
-    private void UpdateCameraProperties(){
+    protected void UpdateCameraProperties(){
         Camera cam = Camera.main;
         screen_hight = 2f * cam.orthographicSize;
         screen_width = screen_hight * cam.aspect;
     }
 
-    private void flipAnimation(){
+    protected virtual void flipAnimation(){
             GetComponent<SpriteRenderer>().flipX = m_direction.x > 0;
     }
     public virtual void HandleDirectionChange(){
             m_direction  = new Vector3(1,0,0);
     }
-    private void TeleportByWall(){
-        m_rigidbody.velocity = new Vector2( m_direction.x * m_speed, m_direction.y * m_speed );
+    protected virtual void TeleportByWall(){
+        
         if( transform.position.x < -screen_width*0.5f ){ transform.position = new Vector3(  screen_width*0.5f, transform.position.y ); }
         if( transform.position.x >  screen_width*0.5f ){ transform.position = new Vector3( -screen_width*0.5f, transform.position.y ); }
-        if( transform.position.y < -screen_hight*0.5f ){ transform.position = new Vector3( transform.position.x,  screen_hight*0.5f ); }
-        if( transform.position.y >  screen_hight*0.5f ){ transform.position = new Vector3( transform.position.x, -screen_hight*0.5f ); }
+        if( transform.position.y < -screen_hight*0.5f ){ 
+            if( m_direction.y < 0 ) m_direction = new Vector3( m_direction.x, -m_direction.y ); }
+        if( transform.position.y >  150 ){ 
+            if( m_direction.y > 0 ) m_direction = new Vector3( m_direction.x, -m_direction.y ); }
     }
 
-    protected virtual void Update(){
+    private void move(){
+        m_rigidbody.velocity = new Vector2( m_direction.x * m_speed, m_direction.y * m_speed );
+    }
+
+
+    private bool startBlock(){
         if( BlockHere ) {
             timer += Time.deltaTime;
             if(timer > 1.0){
                 timer = 0;
                 BlockHere = false;
             }
-            return;
+            return true;
         }
+        return false;
+    }
+
+    protected virtual void Update(){
+        if( startBlock() ) return;
         UpdateCameraProperties();
         HandleDirectionChange();
+        move();
         TeleportByWall();
         UpdateDirectionChangeTimer();
         flipAnimation();
     }
+
+    public virtual void OnStart(){}
 
     public virtual void UpdateDirectionChangeTimer(){}
 

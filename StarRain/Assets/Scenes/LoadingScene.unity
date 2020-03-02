@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.18410215}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 273.8, y: 247.29999}
+  m_AnchoredPosition: {x: 273.8, y: 217}
   m_SizeDelta: {x: 265.4, y: -37.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315648148
@@ -212,7 +212,6 @@ GameObject:
   - component: {fileID: 372749221}
   - component: {fileID: 372749220}
   - component: {fileID: 372749219}
-  - component: {fileID: 372749222}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -237,7 +236,7 @@ Camera:
   m_GameObject: {fileID: 372749218}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -255,7 +254,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 169.99255
+  orthographic size: 382.281
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -265,10 +264,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &372749221
@@ -281,24 +280,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1759831757}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &372749222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372749218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b36c73e07c07ac43967dcd4b828030a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSceneName: 
 --- !u!1 &372981590
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,8 +318,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -103, y: -32}
-  m_SizeDelta: {x: 1216.5, y: 639.2}
+  m_AnchoredPosition: {x: -16, y: 0}
+  m_SizeDelta: {x: 1000, y: 639.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &372981592
 MonoBehaviour:
@@ -438,7 +423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759831756
 GameObject:
@@ -452,6 +437,7 @@ GameObject:
   - component: {fileID: 1759831760}
   - component: {fileID: 1759831759}
   - component: {fileID: 1759831758}
+  - component: {fileID: 1759831761}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -472,7 +458,7 @@ RectTransform:
   m_Children:
   - {fileID: 372981591}
   - {fileID: 315648147}
-  m_Father: {fileID: 372749221}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -509,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -528,8 +514,8 @@ Canvas:
   m_GameObject: {fileID: 1759831756}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 372749220}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -540,3 +526,15 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1759831761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759831756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b36c73e07c07ac43967dcd4b828030a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

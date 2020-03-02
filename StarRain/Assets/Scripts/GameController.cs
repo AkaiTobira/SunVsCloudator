@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     };
     float timer = 0;
     [SerializeField] const float pointsMultiplyer = 5;
+
+    [SerializeField] public GameObject HighscoreText;
     [SerializeField] public GameObject UiText;
     [SerializeField] public GameObject UiSummarizeScore;
     [SerializeField] public GameObject GameOverMenu;
@@ -25,11 +27,35 @@ public class GameController : MonoBehaviour
         GameOverMenu.transform.GetComponent<OverMenuController>().Hide();
         Camera.main.aspect = 1.77f;
         currentState = GameState.WaitForPlayer;
+        SetBackgound();
+    }
+
+    void SetBackgound(){
+        int selected_background = PlayerPrefs.GetInt("Background");
+        for( int i = 0; i < transform.GetChild(0).childCount; i ++){
+            transform.GetChild(0).GetChild(i).GetComponent<Renderer>().enabled = i == selected_background;
+        };
     }
 
     public void GameOver(){
         GameOverMenu.transform.GetComponent<OverMenuController>().Show();
+        GameOverMenu.transform.GetComponent<Animation>().Play("GameOverMenu");
         currentState = GameState.Over;
+        UpdateHighscore();
+    }
+
+    private void UpdateHighscore(){
+        int current_highscore = PlayerPrefs.GetInt("Highscore");
+        int current_score     = (int)(timer * pointsMultiplyer);
+        bool new_highscore    = current_highscore < current_score;
+        if( new_highscore ){
+            PlayerPrefs.SetInt("Highscore", current_score);
+            current_highscore = PlayerPrefs.GetInt("Highscore");
+            HighscoreText.GetComponent<Text>().text = "NEW HIGHSCORE !!!";
+            PlayerPrefs.Save();
+        }else{
+            HighscoreText.GetComponent<Text>().text = "HIGHSCORE : " +  current_highscore.ToString();
+        }
     }
 
     public void StartGame(){
@@ -55,8 +81,8 @@ public class GameController : MonoBehaviour
         BlockPlayer();
         if( currentState != GameState.Play ) return;
         timer += Time.deltaTime;
-        UiText.GetComponent<Text>().text           = "Points : " + ((int)(timer * pointsMultiplyer)).ToString();
-        UiSummarizeScore.GetComponent<Text>().text = "Points : " + ((int)(timer * pointsMultiplyer)).ToString();
+        UiText.GetComponent<Text>().text           = "Score : " + ((int)(timer * pointsMultiplyer)).ToString();
+        UiSummarizeScore.GetComponent<Text>().text = "Score : " + ((int)(timer * pointsMultiplyer)).ToString();
     }
 
 }

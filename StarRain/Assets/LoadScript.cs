@@ -10,6 +10,7 @@ public class LoadScript : MonoBehaviour
     public static string nextSceneName = "";
     void Start ()
     {
+     //   Camera.main.aspect = 1.77f;
         StartCoroutine(LoadNextScene());
     }
 

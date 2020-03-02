@@ -5,26 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    [SerializeField] private GameObject background;
     public void LoadGame(){
+        if( !background.GetComponent<TimeAchivement>().is_current_backgorund_valid() ) return;
         SceneManager.LoadScene("LoadingScene");
         GameObject root = SceneManager.GetActiveScene().GetRootGameObjects()[0];
         LoadScript.nextSceneName = "GameScene";
+        SaveSettings();
+    }
+
+    public void SaveSettings(){
+        PlayerPrefs.SetInt("Background", background.GetComponent<TimeAchivement>().backgorund_index);
+        // HERE IS second with player;
+        PlayerPrefs.Save();
     }
 
     public void Exit(){
-
+         Application.Quit();
     }
 
 

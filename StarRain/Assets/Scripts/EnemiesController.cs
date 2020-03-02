@@ -12,6 +12,8 @@ public class EnemiesController : MonoBehaviour
     public GameObject[] m_prefab;
 
     [SerializeField] private float tiemrStep = 2.0f;
+    [SerializeField] private float timerReduction = 0.1f;
+    [SerializeField] private float minTimeStep = 1.0f;
     private void UpdateCameraProperties(){
         Camera cam = Camera.main;
         screen_hight = cam.orthographicSize;
@@ -52,12 +54,20 @@ public class EnemiesController : MonoBehaviour
         if( timer < 0){
             timer += tiemrStep;
             SpawnNewEnemy();
+            tiemrStep = Mathf.Max( tiemrStep-timerReduction, minTimeStep );
         }
     }
 
     void SpawnNewEnemy(){
-        GameObject new_child = Instantiate(m_prefab[Random.Range(0, m_prefab.Length)], new Vector3(Random.Range( -screen_width, screen_width), Random.Range( -screen_hight, screen_hight), 0), Quaternion.identity);
+        GameObject new_child = Instantiate(m_prefab[Random.Range(0, m_prefab.Length)], 
+                                            new Vector3(
+                                                Random.Range( -screen_width, screen_width), 
+                                                Random.Range( -screen_hight, 130), 
+                                                0), 
+                                            Quaternion.identity);
         new_child.transform.parent = this.transform;
+        new_child.GetComponent<BaseController>().OnStart();
+
     }
 
 

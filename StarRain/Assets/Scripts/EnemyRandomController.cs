@@ -5,7 +5,12 @@ using UnityEngine;
 public class EnemyRandomController : BaseController
 {
     private Vector2 targetPosition = new Vector3( 0,0 );
-    private const float direction_change_speed = 0.1f;
+    private const float direction_change_speed = 0.05f;
+
+
+    override public void OnStart(){
+        timerStep = 3.0f;
+    }
     override public void HandleDirectionChange(){
             Vector2 converted_pos_vector3 = new Vector2( transform.position.x, transform.position.y);
             Vector2 target_direction = (targetPosition - converted_pos_vector3).normalized;
