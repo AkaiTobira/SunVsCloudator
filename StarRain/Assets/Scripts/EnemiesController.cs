@@ -8,8 +8,12 @@ public class EnemiesController : MonoBehaviour
     private float timer;
     private float screen_hight;
 
+    private bool is_cop_apeared = false;
+
     private float screen_width;
     public GameObject[] m_prefab;
+
+    [SerializeField] private GameObject followerEnemy;
 
     [SerializeField] private float tiemrStep = 2.0f;
     [SerializeField] private float timerReduction = 0.1f;
@@ -42,11 +46,29 @@ public class EnemiesController : MonoBehaviour
         }
     }
 
+    void SpawnCop(){
+        print( transform.parent.GetComponent<GameController>().timer < 15 );
+        if( transform.parent.GetComponent<GameController>().timer < 15 ) return;
+        
+        is_cop_apeared = true;
+        GameObject new_child = Instantiate(followerEnemy, 
+                                            new Vector3(
+                                                Random.Range( -screen_width, screen_width), 
+                                                Random.Range( -screen_hight, 130), 
+                                                0), 
+                                            Quaternion.identity);
+        new_child.transform.parent = this.transform;
+        new_child.GetComponent<EnemyFollowController>().playerNode = transform.parent.GetChild(4).gameObject;
+        new_child.GetComponent<BaseController>().OnStart();
+    }
+
     void Update()
     {
         if( ! transform.parent.GetComponent<GameController>().isGameStarted() ) return;
         UpdateCameraProperties();
         UpdateTimerToSpawnNewChild();
+        if( is_cop_apeared ) return;
+        SpawnCop();
     }
 
     void UpdateTimerToSpawnNewChild(){

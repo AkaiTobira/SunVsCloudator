@@ -15,9 +15,9 @@ public class EnemyCharge : BaseController
     public override void OnStart(){
         UpdateCameraProperties();
         movingLeft       = ( Random.Range(0,2) == 1 );
-        float x_position = ( movingLeft ) ? -screen_width*0.5f - 10.0f : screen_width*0.5f + 10.0f;
+        float x_position = ( movingLeft ) ? -(screen_width*0.5f + 10.0f) : screen_width*0.5f + 10.0f;
         transform.position = new Vector3(  x_position, transform.position.y, 0 );
-        targetPos          = new Vector3( -x_position, Random.Range( -screen_hight*0.5f, 150 ), 0 );
+        targetPos          = new Vector3( -(x_position + ((movingLeft) ? -30 : 30)) , Random.Range( -screen_hight*0.5f, 150 ), 0 );
     }
 
     override public void HandleDirectionChange(){

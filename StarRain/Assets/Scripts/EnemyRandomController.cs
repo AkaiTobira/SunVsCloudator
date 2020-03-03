@@ -8,6 +8,10 @@ public class EnemyRandomController : BaseController
     private const float direction_change_speed = 0.05f;
 
 
+    override protected void flipAnimation(){
+        GetComponent<SpriteRenderer>().flipX = m_direction.x < 0;
+    }
+
     override public void OnStart(){
         timerStep = 3.0f;
     }

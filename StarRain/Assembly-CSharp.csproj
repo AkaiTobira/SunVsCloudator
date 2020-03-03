@@ -53,8 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LoadScript.cs" />
-     <Compile Include="Assets\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\AchievmentMeasures.cs" />
      <Compile Include="Assets\Scripts\BaseController.cs" />
      <Compile Include="Assets\Scripts\EnemiesController.cs" />
@@ -64,10 +62,13 @@
      <Compile Include="Assets\Scripts\EnemyRandomController.cs" />
      <Compile Include="Assets\Scripts\EnemyRotateController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\LoadScript.cs" />
+     <Compile Include="Assets\Scripts\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\OverMenuController.cs" />
+     <Compile Include="Assets\Scripts\PlayerAchivement.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\ReplayButton.cs" />
-     <Compile Include="Assets\TimeAchivement.cs" />
+     <Compile Include="Assets\Scripts\TimeAchivement.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/omen/Documents/GitHub/StarRain/StarRain/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

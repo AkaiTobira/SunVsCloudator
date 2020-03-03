@@ -6,17 +6,19 @@ using UnityEngine;
 public class PlayerController : BaseController
 {
 
-    private bool pausePlayer = false;
+    [SerializeField] public bool blockInput = false;
     [SerializeField] public bool enableGoodMode = false;
 
     override protected void Awake() {
         base.Awake();
-        pausePlayer = true;
         BlockHere   = true;
-
     }
 
     override public void HandleDirectionChange(){
+        if( blockInput ){
+            m_direction = new Vector3(0.0f,0.0f,0.0f);   
+            return;
+        }
         HandleAndriodInput();
         HandleMouseInput();
     }
@@ -51,7 +53,8 @@ public class PlayerController : BaseController
     void OnTriggerEnter2D(Collider2D col){
         if( enableGoodMode ) return;
         transform.parent.GetComponent<GameController>().GameOver();
-        Destroy(this.gameObject);
+        m_speed = 0.0f;
+        //Destroy(this.gameObject);
     }
 
 }

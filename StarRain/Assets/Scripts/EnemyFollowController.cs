@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyFollowController : BaseController
 {
 
-    [SerializeField] private GameObject playerNode = null;
+    [SerializeField] public GameObject playerNode = null;
 
     override protected void flipAnimation(){
         GetComponent<SpriteRenderer>().flipX = m_direction.x < 0;

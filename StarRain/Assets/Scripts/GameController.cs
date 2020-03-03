@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     public enum GameState {
         WaitForPlayer, Play, Over
     };
-    float timer = 0;
+    public float timer = 0;
     [SerializeField] const float pointsMultiplyer = 5;
 
     [SerializeField] public GameObject HighscoreText;
@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] public GameObject DarkImage;
 
+    [SerializeField] public GameObject[] players;
 
     void Awake() {
         GameOverMenu.transform.GetComponent<OverMenuController>().Hide();
@@ -35,7 +36,17 @@ public class GameController : MonoBehaviour
         for( int i = 0; i < transform.GetChild(0).childCount; i ++){
             transform.GetChild(0).GetChild(i).GetComponent<Renderer>().enabled = i == selected_background;
         };
+        int selected_player = PlayerPrefs.GetInt("PlayerID");
+        loadPlayer(selected_player);
     }
+
+    void loadPlayer( int player_id){
+        GameObject new_child = Instantiate(players[player_id], 
+                                            new Vector3( 0.0f, 0.0f, 0.0f), 
+                                            Quaternion.identity);
+        new_child.transform.parent = this.transform;
+    }
+
 
     public void GameOver(){
         GameOverMenu.transform.GetComponent<OverMenuController>().Show();
@@ -49,19 +60,17 @@ public class GameController : MonoBehaviour
         int current_score     = (int)(timer * pointsMultiplyer);
         bool new_highscore    = current_highscore < current_score;
         if( new_highscore ){
-            PlayerPrefs.SetInt("Highscore", current_score);
-            current_highscore = PlayerPrefs.GetInt("Highscore");
             HighscoreText.GetComponent<Text>().text = "NEW HIGHSCORE !!!";
-            PlayerPrefs.Save();
         }else{
             HighscoreText.GetComponent<Text>().text = "HIGHSCORE : " +  current_highscore.ToString();
         }
+        AchievmentMeasures.update_measure("points", (int)(timer * pointsMultiplyer));
     }
 
     public void StartGame(){
         if( currentState != GameState.WaitForPlayer ) return;
         currentState = GameState.Play;
-        transform.GetChild(3).GetComponent<EnemiesController>().RunAllEnemies();
+        transform.GetChild(2).GetComponent<EnemiesController>().RunAllEnemies();
         DarkImage.SetActive(false);
     }
 
@@ -71,7 +80,7 @@ public class GameController : MonoBehaviour
 
     void BlockPlayer(){
         if( currentState != GameState.Play ) {
-            BaseController player_script = transform.GetChild(2).GetComponent<BaseController>();
+            BaseController player_script = transform.GetChild(4).GetComponent<BaseController>();
             if( player_script ) player_script.BlockHere = true;
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BaseController : MonoBehaviour
 {
-    [SerializeField] float m_speed = 100.0f;
+    [SerializeField] protected float m_speed = 100.0f;
     protected Rigidbody2D m_rigidbody;
     protected Vector2 m_direction;
 
