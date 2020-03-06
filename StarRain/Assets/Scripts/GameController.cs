@@ -26,7 +26,6 @@ public class GameController : MonoBehaviour
 
     void Awake() {
         GameOverMenu.transform.GetComponent<OverMenuController>().Hide();
-        Camera.main.aspect = 1.77f;
         currentState = GameState.WaitForPlayer;
         SetBackgound();
     }
