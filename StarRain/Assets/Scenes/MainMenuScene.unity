@@ -470,7 +470,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: F**cing Homemade Time Machine
+  m_Text: 'Sun vs Cloudator  '
 --- !u!222 &226620535
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1487,9 +1487,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -87, y: -13}
-  m_SizeDelta: {x: 150, y: 200}
-  m_Pivot: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -55.74002, y: 83}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 1, y: 1}
 --- !u!95 &818542397
 Animator:
   serializedVersion: 3
@@ -1529,7 +1529,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 592f66c1f3afa3948964df544de61092, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85d9c8040b49aeb41aec16784cc778c0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

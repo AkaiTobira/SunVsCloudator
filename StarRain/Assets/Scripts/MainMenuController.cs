@@ -7,6 +7,11 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject background = null;
     [SerializeField] private GameObject player = null;
+
+    private void Awake() {
+        GameState.changeToCustomizationScreen();
+    }
+
     public void LoadGame(){
         if( !background.GetComponent<TimeAchivement>().is_current_backgorund_valid() ) return;
         if( !player.GetComponent<PlayerAchivement>().is_current_backgorund_valid() ) return;
@@ -25,6 +30,4 @@ public class MainMenuController : MonoBehaviour
     public void Exit(){
          Application.Quit();
     }
-
-
 }

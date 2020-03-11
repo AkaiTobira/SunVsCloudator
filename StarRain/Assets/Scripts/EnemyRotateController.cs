@@ -5,58 +5,56 @@ using UnityEngine;
 public class EnemyRotateController : BaseController
 {
 
+    public List<Vector3> wheelPoints = new List<Vector3>();
+    private int wheelPointIndex = 0;
+
     private Vector3 wheelPoint     = new Vector3(0,0,0);
     private Vector3 wheelPointNext = new Vector3(0,0,0);
 
-    [SerializeField] public float rotatationRadius = 1.0f;
-    override public void HandleDirectionChange(){
-        m_direction = (wheelPointNext-wheelPoint).normalized;
+    private const int numberOfPoints = 40;
+    [SerializeField] public float rotatationRadius = 50.0f;
+
+
+    private Vector3 RotateVector(Vector3 v, float angle)
+    {
+        float _x = v.x*Mathf.Cos(angle) - v.y*Mathf.Sin(angle);
+        float _y = v.x*Mathf.Sin(angle) + v.y*Mathf.Cos(angle);
+        return new Vector3(_x,_y, 0);  
     }
 
-    override protected void flipAnimation(){
+    private void generateWheelPoints(){
+        wheelPoints = new List<Vector3>();
+        for( int i = 0; i < numberOfPoints; i++){
 
-    Animator anim =  GetComponent<Animator>();
 
-    if( m_direction.x >= 0 ){
-        if( m_direction.y > 0.5 ){ // RD
-            anim.Play("Dino2", 0, 0.7f );
-     //       print( "X,Y05");
-        }else if( m_direction.y > 0.0){ // R
-            anim.Play("Dino2", 0, 0.0f );
-      //      print( "X,Y00");
-        }else if( m_direction.y > -0.5){ // RU
-            anim.Play("Dino2", 0, 0.1f );
-      //      print( "X,Y-5");
-        }else{
-            anim.Play("Dino2", 0, 0.2f ); // U
-      //      print( "X,Y-10");
+            wheelPoints.Add( transform.position + Quaternion.Euler(0, 0, (-(360.0f/(float)numberOfPoints )*(float)i) + 22.5f) * new Vector3(0,rotatationRadius,0));
+
+            //wheelPoints.Add( transform.position + RotateVector( Vector2.up * rotatationRadius, 90.0f*(float)i  ) );
         }
-    }else{
-        if( m_direction.y > 0.5 ){ //LU
-            anim.Play("Dino2", 0, 0.3f );
-      //      print( "-X,Y05");
-        }else if( m_direction.y > 0.0){ //L
-            anim.Play("Dino2", 0, 0.4f );
-      //      print( "-X,Y00");
-        }else if( m_direction.y > -0.5){ // LD
-            anim.Play("Dino2", 0, 0.5f );
-      //      print( "-X,Y-5");
-        }else{
-            anim.Play("Dino2", 0, 0.6f ); // D
-      //      print( "-X,Y05");
+
+        print( Mathf.Cos(45) );
+
+        print( transform.position );
+        for( int i = 0; i <numberOfPoints; i++){
+
+            print( i.ToString() +  wheelPoints[i].ToString());
         }
     }
+
+    override protected void TeleportByWall(){
+
     }
 
-    override public void UpdateDirectionChangeTimer(){
-        wheelPoint = wheelPointNext;
-
-        timer += Time.deltaTime * rotatationRadius ;
-        if( timer > 360.0f ) timer -= 360.0f;
-
-        wheelPointNext = new Vector3( Mathf.Cos(timer) * 80 * 200, 
-                                      Mathf.Sin(timer) * 80 * 200, 
-                                      0);
+    override public void Awake(){
+        base.Awake();
+        generateWheelPoints();
+        wheelPointIndex    = Random.Range(0, numberOfPoints);
+        transform.position = wheelPoints[wheelPointIndex];
     }
 
+    override public void ChangeDirection(){
+        m_direction = (wheelPoints[wheelPointIndex]-transform.position).normalized;
+        float distance = Vector2.Distance( wheelPoints[wheelPointIndex], transform.position);
+        if( distance - m_direction.magnitude < (m_speed*0.1) ) wheelPointIndex = (wheelPointIndex + 1)%numberOfPoints;
+    }
 }

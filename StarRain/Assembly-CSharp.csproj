@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AchievmentMeasures.cs" />
+     <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\BaseController.cs" />
+     <Compile Include="Assets\Scripts\CollectableObject.cs" />
      <Compile Include="Assets\Scripts\EnemiesController.cs" />
      <Compile Include="Assets\Scripts\EnemyCharge.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
@@ -62,6 +64,7 @@
      <Compile Include="Assets\Scripts\EnemyRandomController.cs" />
      <Compile Include="Assets\Scripts\EnemyRotateController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\GameState.cs" />
      <Compile Include="Assets\Scripts\LoadScript.cs" />
      <Compile Include="Assets\Scripts\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\OverMenuController.cs" />

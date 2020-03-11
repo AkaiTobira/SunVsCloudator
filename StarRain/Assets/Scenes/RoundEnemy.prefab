@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 100
-  BlockHere: 1
   index: 0
   numberOfChild: 0
   timerStep: 0.2
-  rotatationRadius: 1
+  wheelPoints: []
+  rotatationRadius: 40
