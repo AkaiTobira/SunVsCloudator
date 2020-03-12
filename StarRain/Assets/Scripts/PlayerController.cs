@@ -18,7 +18,8 @@ public class PlayerController : BaseController
     }
 
     override public void ChangeDirection(){
-        if( GameState.isGameActive() || GameState.isWaitingForGameStart() ){
+
+        if( GameState.isGameActive() || GameState.isWaitingForGameStart() || GameState.isGamePaused() ){
             HandleAndriodInput();
             HandleMouseInput();
         }else{
@@ -30,7 +31,6 @@ public class PlayerController : BaseController
         foreach( Touch t in Input.touches ){
             transform.parent.GetComponent<GameController>().StartGame();
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(t.position);
-            if( transform.position.y > 150 && mousePosition.y > 150){ return; }
             m_direction   = (mousePosition - transform.position).normalized;
         }
     }
@@ -56,9 +56,17 @@ public class PlayerController : BaseController
 
     void OnTriggerEnter2D(Collider2D col){
         if( goodMode ) return;
-        transform.parent.GetComponent<GameController>().GameOver();
-        AchievmentMeasures.update_measure("byWall", flipTimes);
-        m_speed = 0.0f;
+        if( col.gameObject.tag == "Collectable" ){
+            float additionalPoints = col.gameObject.GetComponent<CollectableObject>().points;
+            int objectId           = col.gameObject.GetComponent<CollectableObject>().objectId;
+
+            transform.parent.GetComponent<GameController>().AddPoints(additionalPoints, objectId );
+
+        }else{
+            transform.parent.GetComponent<GameController>().GameOver();
+            AchievmentMeasures.update_measure("byWall", flipTimes);
+            m_speed = 0.0f;
+        }
     }
 
     public void UpdateCameraProperties(){
@@ -69,21 +77,21 @@ public class PlayerController : BaseController
 
     //TO change
     override protected void TeleportByWall(){
-        if( transform.position.x < -screenWidth*0.5f ){ 
-            transform.position = new Vector3(  screenWidth*0.5f, transform.position.y ); 
+
+        if( Mathf.Abs(transform.position.x) > screenWidth*0.5f ){
+            float sign     = transform.position.x/Mathf.Abs(transform.position.x);
+            float distance = (screenWidth*0.5f - 5);
+
+            transform.position = new Vector3( -1 * sign * distance, transform.position.y ); 
             flipTimes++;
-            }
-        if( transform.position.x >  screenWidth*0.5f ){
-             transform.position = new Vector3( -screenWidth*0.5f, transform.position.y ); 
-             flipTimes++;
-             }
-        if( transform.position.y < -screenHight*0.5f ){ 
-            transform.position = new Vector3( transform.position.x, screenHight*0.5f ); 
-             flipTimes++;
         }
-        if( transform.position.y >  screenHight*0.5f ){ 
-            transform.position = new Vector3( transform.position.x, -screenHight*0.5f ); 
-             flipTimes++;
+
+        if( Mathf.Abs(transform.position.y) > screenHight*0.5f ){
+            float sign     = transform.position.y/Mathf.Abs(transform.position.y);
+            float distance = (screenHight*0.5f - 5);
+
+            transform.position = new Vector3( transform.position.x, -1 * sign * distance  ); 
+            flipTimes++;
         }
     }
 

@@ -32,13 +32,13 @@ public class EnemyRotateController : BaseController
             //wheelPoints.Add( transform.position + RotateVector( Vector2.up * rotatationRadius, 90.0f*(float)i  ) );
         }
 
-        print( Mathf.Cos(45) );
+    //    print( Mathf.Cos(45) );
 
-        print( transform.position );
-        for( int i = 0; i <numberOfPoints; i++){
+    //    print( transform.position );
+    //    for( int i = 0; i <numberOfPoints; i++){
 
-            print( i.ToString() +  wheelPoints[i].ToString());
-        }
+    ///        print( i.ToString() +  wheelPoints[i].ToString());
+    //    }
     }
 
     override protected void TeleportByWall(){

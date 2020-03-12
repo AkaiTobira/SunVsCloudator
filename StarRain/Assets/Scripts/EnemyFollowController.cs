@@ -23,7 +23,9 @@ public class EnemyFollowController : BaseController
 
     void OnTriggerEnter2D(Collider2D col){
         if( col.gameObject.name.Contains("Player") ) return;
-        Destroy(col.gameObject);
+        col.gameObject.GetComponent<Animator>().SetBool("isAlive", false);
+        Destroy (col.gameObject, col.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length); //GetCurrentAnimatorStateInfo(0).length ); 
+    //    Destroy(col.gameObject);
     }
 
 }

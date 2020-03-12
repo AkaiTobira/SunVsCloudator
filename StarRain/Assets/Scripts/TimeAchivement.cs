@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimeAchivement : MonoBehaviour
 {
     
-    [SerializeField] private GameObject[] previews;
+    [SerializeField] private GameObject[] previews = null;
     [SerializeField] private GameObject age_name = null;
     [SerializeField] private GameObject requirement = null;
 
@@ -16,10 +16,10 @@ public class TimeAchivement : MonoBehaviour
     [SerializeField] private GameObject commingSoon = null;
     
 
-    [SerializeField] private string[]  age_names;
+    [SerializeField] private string[]  age_names = null;
 
-    [SerializeField] private float[]  requirements_targets;
-    [SerializeField] private string[] requirements_description;
+    [SerializeField] private float[]  requirements_targets = null;
+    [SerializeField] private string[] requirements_description = null;
     [HideInInspector] public int backgorund_index;
 
     void Start()

@@ -41,6 +41,10 @@ public class GameState : MonoBehaviour
         currentState = GameStates.GameOver;
     }
 
+    static public bool isGamePaused(){
+        return currentState == GameStates.GamePaused;
+    }
+
     static public bool isGameOver(){
         return currentState == GameStates.GameOver;
     }

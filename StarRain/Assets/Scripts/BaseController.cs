@@ -10,7 +10,7 @@ public class BaseController : MonoBehaviour
     protected Vector2     m_direction;
 
     protected float screenHight;
-    protected float screenWidth;
+    public float screenWidth; //Set to protected
 
 
     protected bool sortY = true;
@@ -52,7 +52,6 @@ public class BaseController : MonoBehaviour
     private void Move(){
         if( sortY) GetComponent<Renderer>().sortingOrder = (int)transform.position.y;
         
-     //   gameObject.layer = 
         m_rigidbody.velocity = new Vector2( m_direction.x * m_speed, m_direction.y * m_speed );
         if(!GameState.isGameActive()) m_rigidbody.velocity = new Vector2(0.0f,0.0f);
     }

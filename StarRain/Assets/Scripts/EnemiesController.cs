@@ -57,7 +57,7 @@ public class EnemiesController : MonoBehaviour
                                                 0), 
                                             Quaternion.identity);
         new_child.transform.parent = this.transform;
-        new_child.GetComponent<EnemyFollowController>().playerNode = transform.parent.GetChild(4).gameObject;
+        new_child.GetComponent<EnemyFollowController>().playerNode = transform.parent.GetChild(3).gameObject;
         new_child.GetComponent<BaseController>().SetScreenSize( screenHight, screenWidth);
         new_child.GetComponent<BaseController>().Awake();
     }
@@ -85,7 +85,7 @@ public class EnemiesController : MonoBehaviour
         GameObject new_child = Instantiate(m_prefab[Random.Range(0, m_prefab.Length)], 
                                             new Vector3(
                                                 Random.Range( -screenWidth, screenWidth), 
-                                                Random.Range( -screenHight, 130), 
+                                                Random.Range( -screenHight, screenHight), 
                                                 0), 
                                             Quaternion.identity);
         new_child.transform.parent = this.transform;
