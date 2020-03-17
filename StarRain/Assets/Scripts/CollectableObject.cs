@@ -10,6 +10,7 @@ public class CollectableObject : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col){
 
         if( col.gameObject.name.Contains("Player") ) Destroy(gameObject);
+        if( col.gameObject.tag == "Killer" ) Destroy(gameObject);
     }
 }
 

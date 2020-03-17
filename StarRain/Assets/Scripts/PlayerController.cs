@@ -40,7 +40,6 @@ public class PlayerController : BaseController
         ChangeDirection();
     }
 
-
     private void HandleMouseInput(){
 
         if ( Input.GetKeyDown( KeyCode.Space )){
@@ -69,6 +68,7 @@ public class PlayerController : BaseController
         }else{
             if( goodMode ) return;
             if( GameState.isGameActive() ){
+                GetComponent<Animator>().SetTrigger("isDead");
                 transform.parent.GetComponent<GameController>().GameOver();
                 AchievmentMeasures.update_measure("byWall", flipTimes);
                 m_speed = 0.0f;

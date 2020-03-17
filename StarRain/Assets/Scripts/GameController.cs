@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
         GameOverMenu.transform.GetComponent<Animation>().Play("GameOverMenu");
         processUnlockBanners();
         GameState.endGame();
+        PlayerPrefs.SetInt("RainbowBeamEnabled", 0);
         UpdateHighscore();
     }
 
@@ -91,7 +92,7 @@ public class GameController : MonoBehaviour
 
 
     public void StartGame(){
-       // if( GameState.isGamePaused() ) OnPauseButton(); 
+
         if( ! GameState.isWaitingForGameStart()) return;
         GameState.startGame();
         PauseMenu.SetActive(false);
@@ -105,7 +106,6 @@ public class GameController : MonoBehaviour
         timer += Time.deltaTime;
         UiText.GetComponent<Text>().text           = "Score : " + ((int)(timer * POINTS_MULTIPLER + collectablePoints)).ToString();
         UiSummarizeScore.GetComponent<Text>().text = "Score : " + ((int)(timer * POINTS_MULTIPLER + collectablePoints)).ToString();
-     //   DebbugerText.GetComponent<Text>().text     = transform.GetChild(3).position.ToString() + " : " +  (-transform.GetChild(3).GetComponent<BaseController>().screenWidth*0.5f).ToString();
     }
 
 }

@@ -6,7 +6,6 @@ public class EnemyFollowController : BaseController
 
     [SerializeField] public GameObject playerNode = null;
     private bool isDead = false;
-    private float savedSpeed = 0;
 
     override public void Awake(){
         base.Awake();
@@ -30,10 +29,10 @@ public class EnemyFollowController : BaseController
 
     IEnumerator ResetFireTrigger ()
     {
-       yield return new WaitForSeconds(4.5f);
-       GetComponent<Animator>().ResetTrigger("isDead");
-       isDead = false;
-
+        yield return new WaitForSeconds(4.5f);
+        GetComponent<Animator>().ResetTrigger("isDead");
+        isDead = false;
+        GetComponent<CapsuleCollider2D>().enabled = true;
     }
 
     void OnTriggerEnter2D(Collider2D col){
@@ -43,6 +42,7 @@ public class EnemyFollowController : BaseController
             Destroy (col.gameObject, col.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         }
         if( col.gameObject.tag == "Killer"){
+            GetComponent<CapsuleCollider2D>().enabled = false;
             GetComponent<Animator>().SetTrigger("isDead");
             isDead      = true;
             StartCoroutine(ResetFireTrigger());

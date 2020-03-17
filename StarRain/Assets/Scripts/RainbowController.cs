@@ -26,7 +26,22 @@ public class RainbowController : MonoBehaviour
             transform.GetChild(6).GetComponent<Renderer>().enabled = true;
             isRainbowReady = true;
             transform.GetChild(6).GetComponent<Animator>().SetTrigger("Activate");
+            EnableTapMe();
         }
+    }
+
+    private void EnableTapMe(){
+        if( PlayerPrefs.GetInt("RainbowBeamEnabled") == 1) return;
+        PlayerPrefs.SetInt("RainbowBeamEnabled", 1);
+        PlayerPrefs.Save();
+        transform.GetChild(7).GetComponent<Animation>().Play();
+        transform.GetChild(7).GetComponent<Animation>().wrapMode = WrapMode.Loop;
+    }
+
+    private void turnDownTapME(){
+        transform.GetChild(7).GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(7).GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(7).GetComponent<Animation>().Stop();
     }
 
     private bool IsRainbowReady(){
@@ -68,6 +83,7 @@ public class RainbowController : MonoBehaviour
 
     private void FireRainbow(){
         if( !isRainbowReady) return;
+        turnDownTapME();
         isRainbowReady = false;
         isRainbowActive = true;
         AchievmentMeasures.update_measure("rainbow", 1);

@@ -50,10 +50,10 @@ public class AchievmentMeasures : MonoBehaviour
 
     public static bool is_requirement_meet( string measure, float target){
         if( measure == "unlockBG3")     return true;
-        if( measure == "unlockBG2")     return get_value("rainbow")     > target; 
+        if( measure == "unlockBG2")     return get_value("rainbow")     >= target; 
         if( measure == "unlockPlayer1") return true;
-        if( measure == "unlockPlayer2") return get_value("totalPoints") > target;
-        if( measure == "unlockPlayer3") return get_value("byWall")      > target;
+        if( measure == "unlockPlayer2") return get_value("totalPoints") >= target;
+        if( measure == "unlockPlayer3") return get_value("byWall")      >= target;
         return true;
     }
 
@@ -66,15 +66,10 @@ public class AchievmentMeasures : MonoBehaviour
 
     public static void register_achievment( string name, float value){
         if( Acievments.ContainsKey(name) ) return;
-
         List< float > tempList = new List<float>();
         tempList.Add( (is_requirement_meet(name, value)) ? 1.0f : 0.0f );
         tempList.Add( value );
         Acievments[ name ] = tempList;
-
-        unlockedQueue.Add("BG2");    
-        unlockedQueue.Add("BG2");
-        unlockedQueue.Add("Player0");
     }
 
     private static void update_archive(){
