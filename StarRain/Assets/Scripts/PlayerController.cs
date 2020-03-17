@@ -55,17 +55,24 @@ public class PlayerController : BaseController
     }
 
     void OnTriggerEnter2D(Collider2D col){
-        if( goodMode ) return;
+        
+        if( transform.GetChild(0).GetComponent<RainbowController>().isActivated() ) return;
+
         if( col.gameObject.tag == "Collectable" ){
             float additionalPoints = col.gameObject.GetComponent<CollectableObject>().points;
             int objectId           = col.gameObject.GetComponent<CollectableObject>().objectId;
 
             transform.parent.GetComponent<GameController>().AddPoints(additionalPoints, objectId );
-
+            transform.GetChild(0).GetComponent<RainbowController>().activateRainbowElement(objectId);
+        }else if(col.gameObject.tag == "Killer"){
+            print( "SMT");
         }else{
-            transform.parent.GetComponent<GameController>().GameOver();
-            AchievmentMeasures.update_measure("byWall", flipTimes);
-            m_speed = 0.0f;
+            if( goodMode ) return;
+            if( GameState.isGameActive() ){
+                transform.parent.GetComponent<GameController>().GameOver();
+                AchievmentMeasures.update_measure("byWall", flipTimes);
+                m_speed = 0.0f;
+            }
         }
     }
 

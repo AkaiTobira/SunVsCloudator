@@ -30,22 +30,18 @@ public class BaseController : MonoBehaviour
 
     //TO change
     protected virtual void TeleportByWall(){
-        
-        if( transform.position.x < -screenWidth*0.5f ){ 
-            transform.position = new Vector3(  screenWidth*0.5f, transform.position.y ); 
+        if( Mathf.Abs(transform.position.x) > screenWidth*0.5f ){
+            float sign     = transform.position.x/Mathf.Abs(transform.position.x);
+            float distance = (screenWidth*0.5f - 5);
 
-            }
-        if( transform.position.x >  screenWidth*0.5f ){
-             transform.position = new Vector3( -screenWidth*0.5f, transform.position.y ); 
-
-             }
-        if( transform.position.y < -screenHight*0.5f ){ 
-            transform.position = new Vector3( transform.position.x, screenHight*0.5f ); 
-
+            transform.position = new Vector3( -1 * sign * distance, transform.position.y );
         }
-        if( transform.position.y >  screenHight*0.5f ){ 
-            transform.position = new Vector3( transform.position.x, -screenHight*0.5f ); 
 
+        if( Mathf.Abs(transform.position.y) > screenHight*0.5f ){
+            float sign     = transform.position.y/Mathf.Abs(transform.position.y);
+            float distance = (screenHight*0.5f - 5);
+
+            transform.position = new Vector3( transform.position.x, -1 * sign * distance  );
         }
     }
 
@@ -72,5 +68,16 @@ public class BaseController : MonoBehaviour
         screenHight = x*2;
         screenWidth = y*2;
     }
+
+    void OnTriggerEnter2D(Collider2D col){
+        if( col.gameObject.tag == "Killer") {
+            if( col.transform.parent.GetComponent<RainbowController>().isActivated()){
+                Destroy (gameObject, gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+                gameObject.GetComponent<Animator>().SetBool("isAlive", false);
+            }
+        }
+    }
+
+
 
 }

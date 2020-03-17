@@ -50,5 +50,6 @@ public class CollectableController : MonoBehaviour
                                             Quaternion.identity);
         new_child.transform.parent = this.transform;
         new_child.GetComponent<CollectableObject>().objectId = collectableArrayIndex;
+        //print( collectableArrayIndex );
     }
 }

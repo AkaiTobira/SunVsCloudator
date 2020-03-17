@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] public GameObject DebbugerText;
 
+    [SerializeField] public GameObject NewPlayerBanner;
+    [SerializeField] public GameObject NewBackGroundBanner;
     [SerializeField] public GameObject[] players;
 
     void Awake() {
@@ -51,8 +53,18 @@ public class GameController : MonoBehaviour
     public void GameOver(){
         GameOverMenu.transform.GetComponent<OverMenuController>().Show();
         GameOverMenu.transform.GetComponent<Animation>().Play("GameOverMenu");
+        processUnlockBanners();
         GameState.endGame();
         UpdateHighscore();
+    }
+
+    private void processUnlockBanners(){
+        if( AchievmentMeasures.unlocked_new_background() ) {
+            NewBackGroundBanner.transform.GetComponent<Animation>().Play("S1");
+        };
+        if( AchievmentMeasures.unlocked_new_player() ) {
+            NewPlayerBanner.transform.GetComponent<Animation>().Play("S2");
+        };
     }
 
     private void UpdateHighscore(){

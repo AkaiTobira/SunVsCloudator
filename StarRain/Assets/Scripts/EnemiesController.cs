@@ -15,9 +15,9 @@ public class EnemiesController : MonoBehaviour
 
     [SerializeField] private GameObject followerEnemy;
 
-    [SerializeField] private float tiemrStep = 2.0f;
+    [SerializeField] private float tiemrStep      = 2.0f;
     [SerializeField] private float timerReduction = 0.1f;
-    [SerializeField] private float minTimeStep = 1.0f;
+    [SerializeField] private float minTimeStep    = 1.0f;
     private void UpdateCameraProperties(){
         Camera cam  = Camera.main;
         screenHight = cam.orthographicSize;
@@ -46,24 +46,31 @@ public class EnemiesController : MonoBehaviour
         }
     }
 
+    public Vector3 GetVectorPosition(){
+        Vector3 enemyPosition =  new Vector3( Random.Range( -screenWidth, screenWidth), 
+                                              Random.Range( -screenHight, screenWidth), 0);
+        while ( Vector3.Distance( transform.parent.GetChild(3).transform.position, enemyPosition ) < 100 ){
+            enemyPosition =  new Vector3( Random.Range( -screenWidth, screenWidth), 
+                                          Random.Range( -screenHight, screenWidth), 0);
+        }
+
+        return enemyPosition;
+    }
+
     void SpawnCop(){
         if( transform.parent.GetComponent<GameController>().timer < 15 ) return;
         UpdateCameraProperties();
         is_cop_apeared = true;
         GameObject new_child = Instantiate(followerEnemy, 
-                                            new Vector3(
-                                                Random.Range( -screenWidth, screenWidth), 
-                                                Random.Range( -screenHight, 130), 
-                                                0), 
-                                            Quaternion.identity);
+                                           GetVectorPosition(),
+                                           Quaternion.identity);
         new_child.transform.parent = this.transform;
         new_child.GetComponent<EnemyFollowController>().playerNode = transform.parent.GetChild(3).gameObject;
         new_child.GetComponent<BaseController>().SetScreenSize( screenHight, screenWidth);
         new_child.GetComponent<BaseController>().Awake();
     }
 
-    void Update()
-    {
+    void Update(){
         if( ! GameState.isGameActive() ) return;
         UpdateCameraProperties();
         UpdateSpawnNewEnemy();
@@ -82,11 +89,8 @@ public class EnemiesController : MonoBehaviour
 
     void SpawnNewEnemy(){
         UpdateCameraProperties();
-        GameObject new_child = Instantiate(m_prefab[Random.Range(0, m_prefab.Length)], 
-                                            new Vector3(
-                                                Random.Range( -screenWidth, screenWidth), 
-                                                Random.Range( -screenHight, screenHight), 
-                                                0), 
+        GameObject new_child = Instantiate( m_prefab[Random.Range(0, m_prefab.Length)], 
+                                            GetVectorPosition(), 
                                             Quaternion.identity);
         new_child.transform.parent = this.transform;
         new_child.GetComponent<BaseController>().SetScreenSize( screenHight, screenWidth);

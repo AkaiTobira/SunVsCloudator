@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5346184258531376039}
   m_Layer: 0
   m_Name: RoundEnemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5346184258531376037}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 35, y: 35, z: 1}
+  m_LocalScale: {x: 30, y: 30, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0eedbbee2374aeb42b16038b7b6368ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25e92e2fa13aa1748bc883125f823dd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -138,8 +138,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000006171245, y: 0.11768152}
-  m_Size: {x: 1.3353662, y: 1.3353662}
+  m_Offset: {x: 0.10657663, y: 0.11768151}
+  m_Size: {x: 1.5485214, y: 1.3353683}
   m_Direction: 1
 --- !u!114 &5346184258531376039
 MonoBehaviour:
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 100
+  screenWidth: 0
   index: 0
   numberOfChild: 0
   timerStep: 0.2

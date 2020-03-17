@@ -30,6 +30,8 @@ public class AudioFile
     private bool fadeIn = false;
     private string fadeInUsedString;
     private string fadeOutUsedString;
+
+    static private bool isMuted;
  #endregion
  
  
@@ -48,56 +50,52 @@ public class AudioFile
         }
     }
   #region METHODS
-    public static void PlayMusic(string name){
-        AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
-        if (s == null){
-            Debug.LogError("Sound name" + name + "not found!");
-            return;
-        }else{
-            s.source.Play();
-        }
+
+    public static bool isSoundMuted(){
+        return isMuted; 
     }
-    public static void StopMusic(String name){
-        AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
-        if (s == null){
-            Debug.LogError("Sound name" + name + "not found!");
-            return;
-        }else{
+
+    public static void EnableSounds(){
+        isMuted = false;
+        PlayerPrefs.SetInt("SoundEnabled", 1);
+        PlayerPrefs.Save();
+    }
+
+    public static void MuteAllSounds(){
+        isMuted = true;
+        PlayerPrefs.SetInt("SoundEnabled", 0);
+        PlayerPrefs.Save();
+        foreach( AudioFile s in instance.audioFiles ){
             s.source.Stop();
         }
     }
+
+    public static void PlayMusic(string name){
+        if( isMuted ) return;
+        AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
+        s.source.Play();
+    }
+    public static void StopMusic(String name){
+        AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
+        s.source.Stop();
+    }
     public static void PauseMusic(String name){
         AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
-        if (s == null){
-            Debug.LogError("Sound name" + name + "not found!");
-            return;
-        }else{
-            s.source.Pause();
-        }
+        s.source.Pause();
     }
     public static void UnPauseMusic(String name){
         AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
-        if (s == null){
-            Debug.LogError("Sound name" + name + "not found!");
-            return;
-        }else{
-            s.source.UnPause();
-        }
+        s.source.UnPause();
     }
      public static void LowerVolume(String name, float _duration)
     {
         if (instance.isLowered == false){
             AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
-            if (s == null){
-                Debug.LogError("Sound name" + name + "not found!");
-                return;
-            }else{
-                instance.tmpName = name;
-                instance.tmpVol = s.volume;
-                instance.timeToReset = Time.time + _duration;
-                instance.timerIsSet = true;
-                s.source.volume = s.source.volume / 3;
-            }
+            instance.tmpName = name;
+            instance.tmpVol = s.volume;
+            instance.timeToReset = Time.time + _duration;
+            instance.timerIsSet = true;
+            s.source.volume = s.source.volume / 3;
             instance.isLowered = true;
         }
     }

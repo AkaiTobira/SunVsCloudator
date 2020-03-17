@@ -9,7 +9,7 @@ public class EnemyCharge : BaseController
     float rightBorder = 2000;
 
     override protected void AdaptAnimation(){
-        GetComponent<SpriteRenderer>().flipX = m_direction.x < 0;
+        GetComponent<SpriteRenderer>().flipX = m_direction.x > 0;
     }
     protected void UpdateCameraProperties(){
         Camera cam = Camera.main;

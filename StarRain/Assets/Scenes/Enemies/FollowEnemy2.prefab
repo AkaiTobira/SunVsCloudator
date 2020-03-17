@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6945288901352053736}
   m_Layer: 0
   m_Name: FollowEnemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: abfaca720f547034b9137d966f241e50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ea96e23bd513654bbef510164d5a2de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 100
+  screenWidth: 0
   index: 0
   numberOfChild: 0
   timerStep: 0.2

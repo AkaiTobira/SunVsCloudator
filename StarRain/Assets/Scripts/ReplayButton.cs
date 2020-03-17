@@ -10,7 +10,7 @@ public class ReplayButton : MonoBehaviour
     }
 
     public void GoToMainMenu(){
-        LoadScript.nextSceneName = "MainMenuScene";
+        LoadScript.nextSceneName = "MainMenuScene2";
         SceneManager.LoadScene("LoadingScene");
     }
 

@@ -5,29 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject background = null;
-    [SerializeField] private GameObject player = null;
+
+    [SerializeField] private GameObject muteButton = null;
 
     private void Awake() {
         GameState.changeToCustomizationScreen();
+        if( PlayerPrefs.GetInt("SoundEnabled") == 0 ){
+            muteButton.transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+            muteButton.transform.GetChild(1).GetComponent<Renderer>().enabled = true;
+        }else{
+            muteButton.transform.GetChild(1).GetComponent<Renderer>().enabled = false;
+            muteButton.transform.GetChild(0).GetComponent<Renderer>().enabled = true;
+        }
     }
 
     public void LoadGame(){
-        if( !background.GetComponent<TimeAchivement>().is_current_backgorund_valid() ) return;
-        if( !player.GetComponent<PlayerAchivement>().is_current_backgorund_valid() ) return;
         SceneManager.LoadScene("LoadingScene");
         GameObject root = SceneManager.GetActiveScene().GetRootGameObjects()[0];
         LoadScript.nextSceneName = "GameScene";
-        SaveSettings();
     }
 
-    public void SaveSettings(){
-        PlayerPrefs.SetInt("Background", background.GetComponent<TimeAchivement>().backgorund_index);
-        PlayerPrefs.SetInt("PlayerID",   player.GetComponent<PlayerAchivement>().backgorund_index);
-        PlayerPrefs.Save();
+    public void MuteSound(){
+        if( AudioManager.isSoundMuted() ){
+            AudioManager.EnableSounds();
+            AudioManager.PlayMusic("BG");
+            muteButton.transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+            muteButton.transform.GetChild(1).GetComponent<Renderer>().enabled = true;
+        }else{
+            AudioManager.MuteAllSounds();
+            muteButton.transform.GetChild(1).GetComponent<Renderer>().enabled = false;
+            muteButton.transform.GetChild(0).GetComponent<Renderer>().enabled = true;
+        }
     }
 
-    public void Exit(){
-         Application.Quit();
-    }
 }
