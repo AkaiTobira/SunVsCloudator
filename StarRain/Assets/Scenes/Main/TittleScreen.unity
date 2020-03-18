@@ -1549,6 +1549,60 @@ MonoBehaviour:
     source: {fileID: 0}
     isLooping: 0
     playOnAwake: 0
+  - audioName: BG1
+    audioClip: {fileID: 8300000, guid: fc364afffe36ccd45940ef943432b46d, type: 3}
+    volume: 0.26
+    source: {fileID: 0}
+    isLooping: 1
+    playOnAwake: 0
+  - audioName: Collected
+    audioClip: {fileID: 8300000, guid: 1fe051101382e5c4bb4d79e1251e053d, type: 3}
+    volume: 0
+    source: {fileID: 0}
+    isLooping: 0
+    playOnAwake: 0
+  - audioName: CloudatorAppear
+    audioClip: {fileID: 8300000, guid: 53ec6b6feb3452449811828211d16d20, type: 3}
+    volume: 0
+    source: {fileID: 0}
+    isLooping: 0
+    playOnAwake: 0
+  - audioName: RainbowEnabled
+    audioClip: {fileID: 8300000, guid: e46dcb2ee950d644aa2d2386cad37871, type: 3}
+    volume: 0
+    source: {fileID: 0}
+    isLooping: 0
+    playOnAwake: 0
+  - audioName: CollectedDestroyed
+    audioClip: {fileID: 8300000, guid: 3e0c619f35d615749a082ce27ea3eb43, type: 3}
+    volume: 0
+    source: {fileID: 0}
+    isLooping: 0
+    playOnAwake: 0
+  - audioName: GameOver
+    audioClip: {fileID: 8300000, guid: 1fa5d2a58be76994089f735ac857b113, type: 3}
+    volume: 0
+    source: {fileID: 0}
+    isLooping: 0
+    playOnAwake: 0
+  - audioName: RainbowFire
+    audioClip: {fileID: 8300000, guid: e5dfff6a27bd1f04c89cbf672e834209, type: 3}
+    volume: 0
+    source: {fileID: 0}
+    isLooping: 0
+    playOnAwake: 0
+  - audioName: BG2
+    audioClip: {fileID: 8300000, guid: 9d96b31bd7b246a428d4939eb1a7f969, type: 3}
+    volume: 0.268
+    source: {fileID: 0}
+    isLooping: 1
+    playOnAwake: 0
+  - audioName: CloudPop
+    audioClip: {fileID: 8300000, guid: 809ab7a2eb1a66845ae969ca3f161c03, type: 3}
+    volume: 0
+    source: {fileID: 0}
+    isLooping: 0
+    playOnAwake: 0
 --- !u!4 &258521801
 Transform:
   m_ObjectHideFlags: 0
@@ -6737,8 +6791,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8050e15f9ca514b9029a56b335d9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 0}
-  player: {fileID: 0}
+  muteButton: {fileID: 0}
+  tutorialButton: {fileID: 0}
+  canvasBackground: {fileID: 0}
+  canvasPlayer: {fileID: 0}
+  creditsWindow: {fileID: 0}
 --- !u!1 &1665275372
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Group8
-  productName: StarRain
+  productName: Sun vs Cloudator
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -120,7 +120,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.81
+  bundleVersion: 0.91
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -278,7 +278,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 82741a50e62b3374dbe5978fe753c983, type: 3}
+      m_Icon: {fileID: 2800000, guid: 23434c5a09088a441b4ad3d0fcc42d54, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -287,7 +287,7 @@ PlayerSettings:
     m_Icons:
     - m_Textures:
       - {fileID: 2800000, guid: bc1c100de611cb04e9d5603147597990, type: 3}
-      - {fileID: 2800000, guid: 82741a50e62b3374dbe5978fe753c983, type: 3}
+      - {fileID: 2800000, guid: 23434c5a09088a441b4ad3d0fcc42d54, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
@@ -318,7 +318,7 @@ PlayerSettings:
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: ef176f48fa620d74cb348178e0a4bab3, type: 3}
+      - {fileID: 2800000, guid: 768ed521ef616dd4697a85f9c6d675b9, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 1
@@ -354,7 +354,7 @@ PlayerSettings:
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 82741a50e62b3374dbe5978fe753c983, type: 3}
+      - {fileID: 2800000, guid: d668c71331aa2ea4385e9d54823cb2be, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 0

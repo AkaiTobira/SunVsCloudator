@@ -33,6 +33,7 @@ public class EnemyFollowController : BaseController
         GetComponent<Animator>().ResetTrigger("isDead");
         isDead = false;
         GetComponent<CapsuleCollider2D>().enabled = true;
+        AudioManager.PlayMusic("CloudatorAppear");
     }
 
     void OnTriggerEnter2D(Collider2D col){
@@ -40,6 +41,7 @@ public class EnemyFollowController : BaseController
         if( col.gameObject.tag == "Enemy"){
             col.gameObject.GetComponent<Animator>().SetBool("isAlive", false);
             Destroy (col.gameObject, col.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+            AudioManager.PlayMusic("CloudPop");
         }
         if( col.gameObject.tag == "Killer"){
             GetComponent<CapsuleCollider2D>().enabled = false;

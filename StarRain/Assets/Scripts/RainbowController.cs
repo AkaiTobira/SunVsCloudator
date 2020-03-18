@@ -22,6 +22,7 @@ public class RainbowController : MonoBehaviour
         accuiredElements[elemnt_id] = true;
         transform.GetChild(elemnt_id).GetComponent<Renderer>().enabled = true;
         if( IsRainbowReady() ){
+            AudioManager.PlayMusic("RainbowEnabled");
             clearRainbow();
             transform.GetChild(6).GetComponent<Renderer>().enabled = true;
             isRainbowReady = true;
@@ -83,6 +84,8 @@ public class RainbowController : MonoBehaviour
 
     private void FireRainbow(){
         if( !isRainbowReady) return;
+        AudioManager.PlayMusic("RainbowFire");
+        AudioManager.StopMusic("RainbowEnabled");
         turnDownTapME();
         isRainbowReady = false;
         isRainbowActive = true;

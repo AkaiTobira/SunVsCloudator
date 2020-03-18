@@ -68,6 +68,7 @@ public class EnemiesController : MonoBehaviour
         new_child.GetComponent<EnemyFollowController>().playerNode = transform.parent.GetChild(3).gameObject;
         new_child.GetComponent<BaseController>().SetScreenSize( screenHight, screenWidth);
         new_child.GetComponent<BaseController>().Awake();
+        AudioManager.PlayMusic("CloudatorAppear");
     }
 
     void Update(){

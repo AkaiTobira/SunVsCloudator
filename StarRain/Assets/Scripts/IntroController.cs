@@ -10,11 +10,12 @@ public class IntroController : MonoBehaviour
     Animator anim;
 
     void Start() {
-        if( PlayerPrefs.GetInt("SoundEnabled") == 0 ) AudioManager.MuteAllSounds(); 
+        if( PlayerPrefs.GetInt("SoundEnabled") == 1 ) AudioManager.MuteAllSounds(); 
         anim = GetComponent<Animator>();
     }
 
     private void GoToNextScreen(){
+        AudioManager.PlayMusic("ButtonUI");
         SceneManager.LoadScene("LoadingScene");
         LoadScript.nextSceneName = "MainMenuScene2";
     }

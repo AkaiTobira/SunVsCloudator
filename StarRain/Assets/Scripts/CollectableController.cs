@@ -25,11 +25,16 @@ public class CollectableController : MonoBehaviour
 
     void Awake() {
         UpdateCameraProperties();
-        queueToSpawn.Add(0);
+        queueToSpawn.Add(3);
+        queueToSpawn.Add(4);
+        queueToSpawn.Add(5);
         queueToSpawn.Add(1);
+        queueToSpawn.Add(0);
+        queueToSpawn.Add(2);
         queueToSpawn.Add(2);
         queueToSpawn.Add(3);
         queueToSpawn.Add(4);
+        queueToSpawn.Add(5);
         queueToSpawn.Add(5);
     }
 
@@ -43,8 +48,7 @@ public class CollectableController : MonoBehaviour
 
     private void SpawnAllBallons(){
         spawnOnce = false;
-        int collectableArrayIndex = Random.Range(0, callectable.Length);
-        for( int i = 0; i <  callectable.Length;i++){
+        for( int i = 0; i <  callectable.Length - 3;i++){
             GameObject new_child = Instantiate(callectable[i], 
                                                 new Vector3(
                                                     Random.Range( -screenWidth, screenWidth), 

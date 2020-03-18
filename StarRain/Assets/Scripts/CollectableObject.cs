@@ -9,8 +9,19 @@ public class CollectableObject : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col){
 
-        if( col.gameObject.name.Contains("Player") ) Destroy(gameObject);
-        if( col.gameObject.tag == "Killer" ) Destroy(gameObject);
+        if( col.gameObject.name.Contains("Player") ) {
+            Destroy(gameObject);
+            AudioManager.PlayMusic("CollectedDestroyed");
+        }
+        if( col.gameObject.tag == "Killer" ){
+            Destroy(gameObject);
+            AudioManager.PlayMusic("CollectedDestroyed");
+        }
+        if( col.gameObject.name.Contains("FollowEnemy2")){
+            Destroy(gameObject);
+            AudioManager.PlayMusic("Collected");
+        }
+
     }
 }
 

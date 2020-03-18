@@ -90,8 +90,12 @@ public class AchievmentMeasures : MonoBehaviour
     }
 
     public static bool unlocked_new_player(){
-        string find = unlockedQueue.Find(x => x.Contains("Player"));
+        string result = unlockedQueue.Find(x => x.Contains("Player"));
         unlockedQueue.RemoveAll(x => x.Contains("Player"));
-        return find != null;
+        return result != null;
     }
 }
+
+//TO DO:
+// 1.AChievment player sie nie wyświetla
+// 2.Podmiana  tła 

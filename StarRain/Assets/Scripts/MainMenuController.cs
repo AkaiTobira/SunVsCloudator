@@ -16,13 +16,17 @@ public class MainMenuController : MonoBehaviour
 
     [SerializeField] private GameObject creditsWindow = null;
     private void Awake() {
+        AudioManager.PlayMusic("BG");
         GameState.changeToCustomizationScreen();
         SwapSoundButtonGraphic();
-        if(PlayerPrefs.GetInt("TutorialMainMenu") == 1) hideTutorial();
+        if(PlayerPrefs.GetInt("TutorialMainMenu") == 1){
+            hideTutorial();
+        }else{ tutorialButton.GetComponent<Animation>().Play(); }
     }
 
     private void SwapSoundButtonGraphic(){
-        if( PlayerPrefs.GetInt("SoundEnabled") == 0 ){
+        AudioManager.PlayMusic("ButtonUI");
+        if( PlayerPrefs.GetInt("SoundEnabled") == 1 ){
             muteButton.transform.GetChild(0).GetComponent<Image>().enabled = false;
             muteButton.transform.GetChild(1).GetComponent<Image>().enabled = true;
         }else{
@@ -32,6 +36,8 @@ public class MainMenuController : MonoBehaviour
     }
 
     public void LoadGame(){
+        AudioManager.StopMusic("BG");
+        AudioManager.PlayMusic("ButtonUI");
         SaveCustomization();
         SceneManager.LoadScene("LoadingScene");
         GameObject root = SceneManager.GetActiveScene().GetRootGameObjects()[0];
@@ -74,14 +80,17 @@ public class MainMenuController : MonoBehaviour
 
 
     public void showCredits(){
+        AudioManager.PlayMusic("ButtonUI");
         creditsWindow.transform.GetComponent<Animation>().Play("GameOverMenu");
     }
 
     public void hideCredits(){
+        AudioManager.PlayMusic("ButtonUI");
         creditsWindow.transform.position = new Vector3( 0, -1200, 0);
     }
 
     public void MuteSound(){
+        
         if( AudioManager.isSoundMuted() ){
             AudioManager.EnableSounds();
             AudioManager.PlayMusic("BG");

@@ -74,6 +74,7 @@ public class BaseController : MonoBehaviour
             if( col.transform.parent.GetComponent<RainbowController>().isActivated()){
                 Destroy (gameObject, gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
                 gameObject.GetComponent<Animator>().SetBool("isAlive", false);
+                AudioManager.PlayMusic("CloudPop");
             }
         }
     }

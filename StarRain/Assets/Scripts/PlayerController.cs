@@ -72,6 +72,7 @@ public class PlayerController : BaseController
                 transform.parent.GetComponent<GameController>().GameOver();
                 AchievmentMeasures.update_measure("byWall", flipTimes);
                 m_speed = 0.0f;
+                AudioManager.PlayMusic("GameOver");
             }
         }
     }
