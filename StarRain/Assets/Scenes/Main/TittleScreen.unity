@@ -1545,7 +1545,7 @@ MonoBehaviour:
     playOnAwake: 1
   - audioName: Achievment
     audioClip: {fileID: 8300000, guid: 68f5a16d2c6817740ba12e3ec559ea25, type: 3}
-    volume: 0
+    volume: 0.595
     source: {fileID: 0}
     isLooping: 0
     playOnAwake: 0
@@ -1556,38 +1556,38 @@ MonoBehaviour:
     isLooping: 1
     playOnAwake: 0
   - audioName: Collected
-    audioClip: {fileID: 8300000, guid: 1fe051101382e5c4bb4d79e1251e053d, type: 3}
-    volume: 0
+    audioClip: {fileID: 8300000, guid: 0b3e586db1ad94e4f8e10ef5aa2b9f34, type: 3}
+    volume: 0.35
     source: {fileID: 0}
     isLooping: 0
     playOnAwake: 0
   - audioName: CloudatorAppear
     audioClip: {fileID: 8300000, guid: 53ec6b6feb3452449811828211d16d20, type: 3}
-    volume: 0
+    volume: 0.324
     source: {fileID: 0}
     isLooping: 0
     playOnAwake: 0
   - audioName: RainbowEnabled
     audioClip: {fileID: 8300000, guid: e46dcb2ee950d644aa2d2386cad37871, type: 3}
-    volume: 0
+    volume: 0.393
     source: {fileID: 0}
-    isLooping: 0
+    isLooping: 1
     playOnAwake: 0
   - audioName: CollectedDestroyed
     audioClip: {fileID: 8300000, guid: 3e0c619f35d615749a082ce27ea3eb43, type: 3}
-    volume: 0
+    volume: 0.362
     source: {fileID: 0}
     isLooping: 0
     playOnAwake: 0
   - audioName: GameOver
     audioClip: {fileID: 8300000, guid: 1fa5d2a58be76994089f735ac857b113, type: 3}
-    volume: 0
+    volume: 0.378
     source: {fileID: 0}
     isLooping: 0
     playOnAwake: 0
   - audioName: RainbowFire
     audioClip: {fileID: 8300000, guid: e5dfff6a27bd1f04c89cbf672e834209, type: 3}
-    volume: 0
+    volume: 0.657
     source: {fileID: 0}
     isLooping: 0
     playOnAwake: 0
@@ -1598,8 +1598,14 @@ MonoBehaviour:
     isLooping: 1
     playOnAwake: 0
   - audioName: CloudPop
-    audioClip: {fileID: 8300000, guid: 809ab7a2eb1a66845ae969ca3f161c03, type: 3}
-    volume: 0
+    audioClip: {fileID: 8300000, guid: 84b2690f406148047bc2de25b9b47818, type: 3}
+    volume: 0.279
+    source: {fileID: 0}
+    isLooping: 0
+    playOnAwake: 0
+  - audioName: ButtonUI
+    audioClip: {fileID: 8300000, guid: 89d798d65b5976b4f9864b910956e28d, type: 3}
+    volume: 0.279
     source: {fileID: 0}
     isLooping: 0
     playOnAwake: 0
@@ -6691,7 +6697,6 @@ GameObject:
   - component: {fileID: 1634251168}
   - component: {fileID: 1634251167}
   - component: {fileID: 1634251166}
-  - component: {fileID: 1634251169}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -6779,23 +6784,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1634251169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634251164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8050e15f9ca514b9029a56b335d9a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  muteButton: {fileID: 0}
-  tutorialButton: {fileID: 0}
-  canvasBackground: {fileID: 0}
-  canvasPlayer: {fileID: 0}
-  creditsWindow: {fileID: 0}
 --- !u!1 &1665275372
 GameObject:
   m_ObjectHideFlags: 0

@@ -84,6 +84,7 @@ public class RainbowController : MonoBehaviour
 
     private void FireRainbow(){
         if( !isRainbowReady) return;
+        AudioManager.StopMusic("RainbowEnabled");
         AudioManager.PlayMusic("RainbowFire");
         AudioManager.StopMusic("RainbowEnabled");
         turnDownTapME();

@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
 
    [SerializeField] public GameObject MainMenuButton;
 
+   [SerializeField] public GameObject StartGameButton;
+
     void Awake() {
         GameState.changeToGameScreen();
         GameOverMenu.transform.GetComponent<OverMenuController>().Hide();
@@ -60,6 +62,8 @@ public class GameController : MonoBehaviour
         GameState.endGame();
         PlayerPrefs.SetInt("RainbowBeamEnabled", 0);
         UpdateHighscore();
+
+        UiText.GetComponent<Text>().text= "";
 
         int selected_background = PlayerPrefs.GetInt("Background");
         AudioManager.StopMusic("BG" + (selected_background+1).ToString() );
@@ -122,9 +126,15 @@ public class GameController : MonoBehaviour
         AudioManager.PlayMusic("ButtonUI");
         GameState.startGame();
         PauseMenu.SetActive(false);
+        disableStartGameButton();
         PauseMenu.transform.GetChild(0).GetComponent<Text>().text = "PAUSE";
         transform.GetChild(1).GetComponent<EnemiesController>().RunAllEnemies();
         disableMainMenuButton();
+    }
+
+    private void disableStartGameButton(){
+        StartGameButton.transform.GetComponent<Button>().enabled = false;
+        StartGameButton.transform.GetComponent<Image>().enabled = false;
     }
 
     void Update()

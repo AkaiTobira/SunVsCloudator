@@ -95,7 +95,3 @@ public class AchievmentMeasures : MonoBehaviour
         return result != null;
     }
 }
-
-//TO DO:
-// 1.AChievment player sie nie wyświetla
-// 2.Podmiana  tła 

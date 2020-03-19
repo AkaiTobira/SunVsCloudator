@@ -11,6 +11,9 @@ public class ReplayButton : MonoBehaviour
     }
 
     public void GoToMainMenu(){
+
+        AudioManager.StopMusic("BG1");
+        AudioManager.StopMusic("BG2");
         AudioManager.PlayMusic("ButtonUI");
         GameState.endGame();
         LoadScript.nextSceneName = "MainMenuScene2";

@@ -29,7 +29,6 @@ public class PlayerController : BaseController
 
     private void HandleAndriodInput(){
         foreach( Touch t in Input.touches ){
-            transform.parent.GetComponent<GameController>().StartGame();
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(t.position);
             m_direction   = (mousePosition - transform.position).normalized;
         }
@@ -47,7 +46,6 @@ public class PlayerController : BaseController
         }
 
         if ( Input.GetMouseButton(0) ){
-            transform.parent.GetComponent<GameController>().StartGame();
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             m_direction   = (mousePosition - transform.position).normalized;
         }
@@ -69,8 +67,8 @@ public class PlayerController : BaseController
             if( goodMode ) return;
             if( GameState.isGameActive() ){
                 GetComponent<Animator>().SetTrigger("isDead");
-                transform.parent.GetComponent<GameController>().GameOver();
                 AchievmentMeasures.update_measure("byWall", flipTimes);
+                transform.parent.GetComponent<GameController>().GameOver();
                 m_speed = 0.0f;
                 AudioManager.PlayMusic("GameOver");
             }
