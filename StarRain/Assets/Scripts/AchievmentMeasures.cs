@@ -79,6 +79,7 @@ public class AchievmentMeasures : MonoBehaviour
             if( is_requirement_meet(kvp.Key, kvp.Value[MAX_VALUE_INDEX])){
                 Acievments[kvp.Key][IS_VALID_INDEX] = 1.0f;
                 unlockedQueue.Add( kvp.Key );
+                print( "ADD New " + kvp.Key );
             }
         }
     }

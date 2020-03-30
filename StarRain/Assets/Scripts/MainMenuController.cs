@@ -103,8 +103,8 @@ public class MainMenuController : MonoBehaviour
     public void hideTutorial(){
         PlayerPrefs.SetInt("TutorialMainMenu", 1);
         tutorialButton.SetActive(false);
+        tutorialButton.transform.GetChild(0).GetComponent<Text>().enabled = false;
+        tutorialButton.transform.GetChild(1).GetComponent<Text>().enabled = false;
         PlayerPrefs.Save();
     }
-
-
 }

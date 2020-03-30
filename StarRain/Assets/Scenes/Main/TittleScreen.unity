@@ -1592,8 +1592,8 @@ MonoBehaviour:
     isLooping: 0
     playOnAwake: 0
   - audioName: BG2
-    audioClip: {fileID: 8300000, guid: 9d96b31bd7b246a428d4939eb1a7f969, type: 3}
-    volume: 0.268
+    audioClip: {fileID: 8300000, guid: 05237aca34c4db1468adeaad4d6b9a4f, type: 3}
+    volume: 0.328
     source: {fileID: 0}
     isLooping: 1
     playOnAwake: 0

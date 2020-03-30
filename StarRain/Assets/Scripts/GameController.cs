@@ -42,7 +42,9 @@ public class GameController : MonoBehaviour
         int selected_background = PlayerPrefs.GetInt("Background");
         AudioManager.PlayMusic("BG" + (selected_background+1).ToString() );
         for( int i = 0; i < transform.GetChild(0).childCount; i ++){
-            transform.GetChild(0).GetChild(i).GetComponent<Renderer>().enabled = i == selected_background;
+            if( i == selected_background ) continue;
+            transform.GetChild(0).GetChild(i).GetComponent<Renderer>().enabled = false;
+            transform.GetChild(0).GetChild(i).transform.position = new Vector3( -10000, -100000, 0);
         };
     }
 
@@ -58,10 +60,11 @@ public class GameController : MonoBehaviour
     public void GameOver(){
         GameOverMenu.transform.GetComponent<OverMenuController>().Show();
         GameOverMenu.transform.GetComponent<Animation>().Play("GameOverMenu");
-        processUnlockBanners();
+        
         GameState.endGame();
         PlayerPrefs.SetInt("RainbowBeamEnabled", 0);
         UpdateHighscore();
+        processUnlockBanners();
 
         UiText.GetComponent<Text>().text= "";
 
@@ -70,6 +73,7 @@ public class GameController : MonoBehaviour
     }
 
     private void processUnlockBanners(){
+
         if( AchievmentMeasures.unlocked_new_background() ) {
             NewBackGroundBanner.transform.GetComponent<Animation>().Play("S1");
             AudioManager.PlayMusic("Achievment");
@@ -93,22 +97,37 @@ public class GameController : MonoBehaviour
 
     public void OnPauseButton(){
         AudioManager.PlayMusic("ButtonUI");
+        if( GameState.isWaitingForGameStart() ){
+            StartGame();
+            return;
+        }
         if( GameState.isGameOver()) return;
         if( GameState.isGameActive() ){
+            enablePause();
+        }else{
+            disabelPause();
+        }
+    }
+
+    private void enablePause(){
             PauseMenu.SetActive(true);
             GameState.pauseGame();
+            PauseMenu.transform.GetChild(2).GetComponent<PauseMenuSunnies>().SetActive();
+
             enableMainMenuButton();
-        }else{
+            transform.GetChild(3).GetComponent<Animator>().SetBool("goSleep", true);
+    }
+
+    private void disabelPause(){
             PauseMenu.SetActive(false);
             GameState.startGame();
             disableMainMenuButton();
-        }
+            transform.GetChild(3).GetComponent<Animator>().SetBool("goSleep", false);
     }
 
     private void disableMainMenuButton(){
         MainMenuButton.GetComponent<Button>().enabled = false;
         MainMenuButton.GetComponent<Image>().enabled = false;
-
         MainMenuButton.transform.GetChild(0).GetComponent<Text>().enabled = false;
     }
 
@@ -117,7 +136,6 @@ public class GameController : MonoBehaviour
     private void enableMainMenuButton(){
         MainMenuButton.GetComponent<Button>().enabled = true;
         MainMenuButton.GetComponent<Image>().enabled = true;
-
         MainMenuButton.transform.GetChild(0).GetComponent<Text>().enabled = true;
     }
 
@@ -128,7 +146,6 @@ public class GameController : MonoBehaviour
         PauseMenu.SetActive(false);
         disableStartGameButton();
         PauseMenu.transform.GetChild(0).GetComponent<Text>().text = "PAUSE";
-        transform.GetChild(1).GetComponent<EnemiesController>().RunAllEnemies();
         disableMainMenuButton();
     }
 

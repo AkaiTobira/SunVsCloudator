@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\PauseMenuSunnies.cs" />
      <Compile Include="Assets\Scripts\AchievmentMeasures.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\BaseController.cs" />

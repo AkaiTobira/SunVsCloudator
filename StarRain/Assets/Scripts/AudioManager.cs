@@ -26,10 +26,6 @@ public class AudioFile
     private string tmpName;
     private float tmpVol;
     private bool isLowered = false;
-    private bool fadeOut = false;
-    private bool fadeIn = false;
-    private string fadeInUsedString;
-    private string fadeOutUsedString;
 
     static private bool isMuted;
  #endregion
@@ -71,11 +67,13 @@ public class AudioFile
     }
 
     public static void PlayMusic(string name){
+        if( instance == null ) return;
         if( isMuted ) return;
         AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
         if( !s.source.isPlaying ) s.source.Play();
     }
     public static void StopMusic(String name){
+        if( instance == null ) return;
         AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
         s.source.Stop();
     }

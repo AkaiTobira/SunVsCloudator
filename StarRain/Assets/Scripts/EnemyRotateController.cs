@@ -25,20 +25,8 @@ public class EnemyRotateController : BaseController
     private void generateWheelPoints(){
         wheelPoints = new List<Vector3>();
         for( int i = 0; i < numberOfPoints; i++){
-
-
             wheelPoints.Add( transform.position + Quaternion.Euler(0, 0, (-(360.0f/(float)numberOfPoints )*(float)i) + 22.5f) * new Vector3(0,rotatationRadius,0));
-
-            //wheelPoints.Add( transform.position + RotateVector( Vector2.up * rotatationRadius, 90.0f*(float)i  ) );
         }
-
-    //    print( Mathf.Cos(45) );
-
-    //    print( transform.position );
-    //    for( int i = 0; i <numberOfPoints; i++){
-
-    ///        print( i.ToString() +  wheelPoints[i].ToString());
-    //    }
     }
 
     override protected void TeleportByWall(){

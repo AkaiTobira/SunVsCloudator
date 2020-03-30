@@ -25,25 +25,6 @@ public class EnemiesController : MonoBehaviour
     }
 
     void Awake() {
-        StopAllEnemies();
-    }
-
-    void StopAllEnemies(){
-        for( int i = 0; i < transform.childCount; i ++){
-            Transform child = transform.GetChild(i);
-            child.GetComponent<Renderer>().enabled       = false;
-            child.GetComponent<Animator>().enabled       = false;
-            child.GetComponent<BaseController>().enabled = false;
-        }
-    }
-
-    public void RunAllEnemies(){
-        for( int i = 0; i < transform.childCount; i ++){
-            Transform child = transform.GetChild(i);
-            child.GetComponent<Renderer>().enabled       = true;
-            child.GetComponent<Animator>().enabled       = true;
-            child.GetComponent<BaseController>().enabled = true;
-        }
     }
 
     public Vector3 GetVectorPosition(){

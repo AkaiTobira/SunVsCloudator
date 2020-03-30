@@ -10,6 +10,7 @@ public class IntroController : MonoBehaviour
     Animator anim;
 
     void Start() {
+        PlayerPrefs.DeleteAll();
         if( PlayerPrefs.GetInt("SoundEnabled") == 1 ) AudioManager.MuteAllSounds(); 
         anim = GetComponent<Animator>();
     }

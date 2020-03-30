@@ -14,9 +14,7 @@ public class CollectableController : MonoBehaviour
     public GameObject[] callectable;
     [SerializeField] private float tiemrStep = 5.0f;
 
-
     private List<int> queueToSpawn = new List<int>();
-    private bool spawnOnce = true;
     private void UpdateCameraProperties(){
         Camera cam  = Camera.main;
         screenHight = cam.orthographicSize;
@@ -36,6 +34,7 @@ public class CollectableController : MonoBehaviour
         queueToSpawn.Add(4);
         queueToSpawn.Add(5);
         queueToSpawn.Add(5);
+        SpawnAllBallons();
     }
 
     void Update()
@@ -43,11 +42,9 @@ public class CollectableController : MonoBehaviour
         if( ! GameState.isGameActive() ) return;
         UpdateCameraProperties();
         UpdateSpawnNewEnemy();
-        if(spawnOnce) SpawnAllBallons();
     }
 
     private void SpawnAllBallons(){
-        spawnOnce = false;
         for( int i = 0; i <  callectable.Length - 3;i++){
             GameObject new_child = Instantiate(callectable[i], 
                                                 new Vector3(

@@ -81,7 +81,6 @@ public class PlayerController : BaseController
         screenWidth = screenHight * cam.aspect;
     }
 
-    //TO change
     override protected void TeleportByWall(){
 
         if( Mathf.Abs(transform.position.x) > screenWidth*0.5f ){
