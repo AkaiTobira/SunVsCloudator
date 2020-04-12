@@ -15,10 +15,10 @@ Game is published on itch.io : https://tempacount.itch.io/starrain2
 Sun vs Cloudator was created as second project during [GameDev School]( https://gds.gamedevschool.pl/ ) course. We worked in four person team and completed it in two months. It was a first project which we had to complete by ourself. During production we create five gameplay mechani prototypes and selected best in our opinion.   
 
 ## Screenshots
-![TittleScreen](./images/unnamed.jpg)
-![MainMenu](./images/unnamed1.jpg)
-![Gameplay1](./images/unnamed2.jpg)
-![Gameplay2](./images/unnamed3.jpg)
+![Alt text](/images/unnamed.png?raw=true "Optional Title")
+![Alt text](/images/unnamed1.png?raw=true "Optional Title")
+![Alt text](/images/unnamed2.png?raw=true "Optional Title")
+![Alt text](/images/unnamed3.png?raw=true "Optional Title")
 
 ## Game Description
 This is the endless game which shows us an adventure of a Sunny the Sun who is
