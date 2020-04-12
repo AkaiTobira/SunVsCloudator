@@ -5,18 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LoadScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public static string nextSceneName = "";
     void Start ()
     {
-     //   Camera.main.aspect = 1.77f;
         StartCoroutine(LoadNextScene());
     }
 
     IEnumerator LoadNextScene ()
     {
-        yield return new WaitForSeconds(0.1f);
+       yield return new WaitForSeconds(0.1f);
        SceneManager.LoadScene(nextSceneName);
     }
 }

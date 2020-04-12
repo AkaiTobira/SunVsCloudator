@@ -4,21 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ReplayButton : MonoBehaviour
 {
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-
     public void replayGame(){
+        AudioManager.PlayMusic("ButtonUI");
         LoadScript.nextSceneName = "GameScene";
         SceneManager.LoadScene("LoadingScene");
     }
 
     public void GoToMainMenu(){
-        LoadScript.nextSceneName = "MainMenuScene";
+
+        AudioManager.StopMusic("BG1");
+        AudioManager.StopMusic("BG2");
+        AudioManager.PlayMusic("ButtonUI");
+        GameState.endGame();
+        LoadScript.nextSceneName = "MainMenuScene2";
         SceneManager.LoadScene("LoadingScene");
     }
 
